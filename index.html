@@ -5,267 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leitor de Imagem com Anotações</title>
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="ionicons.js"></script> -->
-    <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <div class="cabecalho">
-        <div class="logo">PROJETO H</div>
-        <div style="display: flex;align-items: center;">
-            <div>
-                <div class="pesquisar">
-                    <span style="margin-right: 5px;">HINO</span>
-                    <div class="item-hinos">
-                        <input type="number" id="hinos" name="hinos" min="1" max="480" value="1">
-                        <button type="button" class="menu-hinos" id="pesquisar">OK</button>
-                    </div>
+        <div class="logo">
+            <h1>Projeto H</h1>
+        </div>
+        <div class="botoes-opcoes">
+            <div class="dropdown">
+                <button class="btn dropdown-btn">Zoom ▼</button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" id="zoomDiminuir">-</button>
+                    <button class="dropdown-item" id="zoomAumentar">+</button>
                 </div>
             </div>
-            <div class="grupo-botoes">
-                <div class="suspenso">
-                    <a><ion-icon name="search-outline"></ion-icon> <span style="margin-left: 5px;">Zoom</span></a>
-                    <div class="menu-suspenso zoom">
-                        <div class="item-zoom">
-                            <button type="button" class="menu-zoom" id="zoomDiminuir">-</button>
-                            <button type="button" class="menu-zoom" id="zoomAumentar">+</button>
-                        </div>
-                    </div>
+            <div class="dropdown">
+                <button class="btn dropdown-btn">Anotações ▼</button>
+                <div class="dropdown-menu">
                 </div>
-                <div class="suspenso">
-                    <a><ion-icon name="newspaper-outline"></ion-icon> <span style="margin-left: 5px;">Anotações</span></a>
-                    <div class="menu-suspenso anotacoes">
-                        <div class="item-anotacoes">
-                            <div>
-                                <div class="item-indicacao" style="height: 250px;">
-                                    <div style="text-align: center;">Indicação Frase</div>
-                                    <div class="anotacoes-botao">
-                                        <button type="button" id="afrase">
-                                            <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-                                                <polyline class="img-item" points="0,0 0,20 100,20 100,0" fill="none" stroke="black" stroke-width="4" />
-                                            </svg>
-                                        </button>
-                                        <button type="button" id="bfrase" class="img-item">
-                                            <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-                                                <polyline class="img-item" points="0,20 0,0 100,0 100,20" fill="none" stroke="black" stroke-width="4" />
-                                            </svg>
-                                        </button>
-                                        <button type="button" id="cfrase" class="img-item">
-                                            <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-                                                <polyline class="img-item" points="0,20 0,0 100,0" fill="none" stroke="black" stroke-width="4" />
-                                            </svg>
-                                        </button>
-                                        <button type="button" id="dfrase" class="img-item">
-                                            <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-                                                <polyline class="img-item" points="0,0 0,20 100,20" fill="none" stroke="black" stroke-width="4" />
-                                            </svg>
-                                        </button>
-                                        <button type="button" id="efrase" class="img-item">
-                                            <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-                                                <polyline class="img-item" points="0,0 0,20 100,20 100,0 0,0" fill="none" stroke="black" stroke-width="4" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="item-indicacao" style="height: 70px;">
-                                    <div style="text-align: center;">Fermata</div>
-                                    <div class="anotacoes-botao" style="grid-template-columns: 1fr 1fr;">
-                                        <button type="button" id="fc" class="fermata">Conc.</button>
-                                        <button type="button" id="fs" class="fermata">Susp.</button>
-                                    </div>
-                                </div>
-                                <div class="item-indicacao" style="height: 60px; margin-top: 8px;">
-                                    <div style="text-align: center;">Quantidade TOM/ST</div>
-                                    <div class="anotacoes-tom">
-                                        <input type="number" name="tomsemitom" min="1" max="50" value="1" step=".5" lang="pt-BR" id="tomsemitom">
-                                        <button type="button" class="menu-hinos" id="quantidadeTom">OK</button>
-                                    </div>
-                                </div>
-                                <div class="item-indicacao" style="height: 60px; margin-top: 8px;">
-                                    <div style="text-align: center;">Compasso</div>
-                                    <div class="anotacoes-tom">
-                                        <input type="number" name="compasso" min="1" max="100" value="1" step="1" lang="pt-BR" id="compasso">
-                                        <button type="button" class="menu-hinos" id="quantidadeCompasso">OK</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="item-indicacao" style="height: 60px;">
-                                    <div style="text-align: center;">Sistema</div>
-                                    <div class="anotacoes-tom">
-                                        <input type="number" name="sistema" min="1" max="50" value="1" step="1" lang="pt-BR" id="sistema">
-                                        <button type="button" class="menu-hinos" id="quantidadeSistema">OK</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="suspenso">
-                    <a><ion-icon name="musical-notes-outline"></ion-icon> <span style="margin-left: 5px;">Dinâmicas</span></a>
-                    <div class="menu-suspenso dinamicas">
-                        <div class="item-dinamicas">
-                            <button type="button" class="menu-item" id="ppp">ppp</button>
-                            <button type="button" class="menu-item" id="pp">pp</button>
-                            <button type="button" class="menu-item" id="p">p</button>
-                            <button type="button" class="menu-item" id="mp">mp</button>
-                            <button type="button" class="menu-item" id="mf">mF</button>
-                            <button type="button" class="menu-item" id="f">f</button>
-                            <button type="button" class="menu-item" id="ff">F</button>
-                            <button type="button" class="menu-item" id="fff">FF</button>
-                            <button type="button" class="menu-item" id="fp">fp</button>
-                            <button type="button" class="menu-item" id="pf">pf</button>
-                            <button type="button" class="menu-item" id="cresc">cresc.</button>
-                            <button type="button" class="menu-item" id="dim">dim.</button>
-                        </div>
-                        <div class="item-dinamicas-icone">
-                            <button type="button" class="menu-item-icone" id="iconeCresc">
-                                <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-                                    <polyline class="img-item" points="100,1 0,10 100,19" fill="none" stroke="black" stroke-width="2" />
-                                </svg>
-                            </button>
-                            <button type="button" class="menu-item-icone" id="iconeDim">
-                                <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
-                                    <polyline class="img-item" points="0,1 100,10 0,19" fill="none" stroke="black" stroke-width="2" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="suspenso">
-                    <a><ion-icon name="options-outline"></ion-icon> <span style="margin-left: 5px;">Configurações</span></a>
-                    <div class="menu-suspenso configuracoes">
-                        <div class="configuracao-texto">
-                            <div class="texto">Cor do Texto</div>
-                            <div class="texto-cores">
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-preta" value="black">
-                                <label for="cor-preta" class="radio-label" data-color="preta"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-vermelha" value="red" checked>
-                                <label for="cor-vermelha" class="radio-label" data-color="vermelha"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-azul" value="blue">
-                                <label for="cor-azul" class="radio-label" data-color="azul"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-verde" value="green">
-                                <label for="cor-verde" class="radio-label" data-color="verde"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-amarelo" value="yellow">
-                                <label for="cor-amarelo" class="radio-label" data-color="amarelo"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-roxo" value="purple">
-                                <label for="cor-roxo" class="radio-label" data-color="roxo"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-laranja" value="orange">
-                                <label for="cor-laranja" class="radio-label" data-color="laranja"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-rosa" value="pink">
-                                <label for="cor-rosa" class="radio-label" data-color="rosa"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-ciano" value="cyan">
-                                <label for="cor-ciano" class="radio-label" data-color="ciano"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-lima" value="lime">
-                                <label for="cor-lima" class="radio-label" data-color="lima"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-magenta" value="magenta">
-                                <label for="cor-magenta" class="radio-label" data-color="magenta"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-cinza" value="gray">
-                                <label for="cor-cinza" class="radio-label" data-color="cinza"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-salmao" value="salmon">
-                                <label for="cor-salmao" class="radio-label" data-color="salmao"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-cerceta" value="teal">
-                                <label for="cor-cerceta" class="radio-label" data-color="cerceta"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-azeitona" value="olive">
-                                <label for="cor-azeitona" class="radio-label" data-color="azeitona"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-indigo" value="indigo">
-                                <label for="cor-indigo" class="radio-label" data-color="indigo"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-chocolate" value="chocolate">
-                                <label for="cor-chocolate" class="radio-label" data-color="chocolate"></label>
-
-                                <input type="radio" name="cores-texto" class="radio-input" id="cor-azulclaro" value="dodgerblue">
-                                <label for="cor-azulclaro" class="radio-label" data-color="azulclaro"></label>
-                            </div>
-                            <div class="texto-fonte">
-                                <div class="titulo">Tamanho Fonte</div>
-                                <input type="range" id="tamanhoFonte" name="tamanho-fonte" min="8" max="30" value="24" step="1" />
-                            </div>
-                        </div>
-                        <div class="configuracao-linhas">
-                            <div class="linhas"><div id="linha"></div></div>
-                            <div class="linhas-cores">
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-preta" value="black">
-                                <label for="linha-cor-preta" class="radio-label" data-color="preta"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-vermelha" value="red">
-                                <label for="linha-cor-vermelha" class="radio-label" data-color="vermelha"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-azul" value="blue" checked>
-                                <label for="linha-cor-azul" class="radio-label" data-color="azul"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-verde" value="green">
-                                <label for="linha-cor-verde" class="radio-label" data-color="verde"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-amarelo" value="yellow">
-                                <label for="linha-cor-amarelo" class="radio-label" data-color="amarelo"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-roxo" value="purple">
-                                <label for="linha-cor-roxo" class="radio-label" data-color="roxo"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-laranja" value="orange">
-                                <label for="linha-cor-laranja" class="radio-label" data-color="laranja"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-rosa" value="pink">
-                                <label for="linha-cor-rosa" class="radio-label" data-color="rosa"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-ciano" value="cyan">
-                                <label for="linha-cor-ciano" class="radio-label" data-color="ciano"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-lima" value="lime">
-                                <label for="linha-cor-lima" class="radio-label" data-color="lima"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-magenta" value="magenta">
-                                <label for="linha-cor-magenta" class="radio-label" data-color="magenta"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-cinza" value="gray">
-                                <label for="linha-cor-cinza" class="radio-label" data-color="cinza"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-salmao" value="salmon">
-                                <label for="linha-cor-salmao" class="radio-label" data-color="salmao"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-cerceta" value="teal">
-                                <label for="linha-cor-cerceta" class="radio-label" data-color="cerceta"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-azeitona" value="olive">
-                                <label for="linha-cor-azeitona" class="radio-label" data-color="azeitona"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-indigo" value="indigo">
-                                <label for="linha-cor-indigo" class="radio-label" data-color="indigo"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-chocolate" value="chocolate">
-                                <label for="linha-cor-chocolate" class="radio-label" data-color="chocolate"></label>
-
-                                <input type="radio" name="cores-linhas" class="radio-input" id="linha-cor-azulclaro" value="dodgerblue">
-                                <label for="linha-cor-azulclaro" class="radio-label" data-color="azulclaro"></label>
-                            </div>
-                            <div class="texto-fonte">
-                                <div class="titulo">Espessura</div>
-                                <input type="range" id="espessuraLinha" name="tamanho-fonte" min="1" max="50" value="2" step="1" />
-                            </div>
-                        </div>
-                    </div>
+                
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-btn">Dinâmica ▼</button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" id="ppp">ppp</button>
+                    <button class="dropdown-item" id="pp">pp</button>
+                    <button class="dropdown-item" id="p">p</button>
+                    <button class="dropdown-item" id="mp">mp</button>
+                    <button class="dropdown-item" id="mf">mf</button>
+                    <button class="dropdown-item" id="f">f</button>
+                    <button class="dropdown-item" id="ff">ff</button>
+                    <button class="dropdown-item" id="fff">fff</button>
+                    <button class="dropdown-item" id="fp">fp</button>
+                    <button class="dropdown-item" id="pf">pf</button>
+                    <button class="dropdown-item" id="cresc">cresc.</button>
+                    <button class="dropdown-item" id="dim">dim.</button>
                 </div>
             </div>
         </div>
+<!--         <button>Teste</button>
+        <input type="color" id="corElementos">
+        <input type="range" id="espessuraLinha" min="1" max="6" value="2"> -->
     </div>
-    <div class="conteudo"><canvas></canvas></div>
+    <div class="conteudo">
+        <!-- <div class="elementos"></div> -->
+        <canvas></canvas>
+    </div>
     <script src="./aplicativo.js"></script>
 </body>
 </html>
